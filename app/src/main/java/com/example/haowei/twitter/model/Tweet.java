@@ -1,14 +1,23 @@
 package com.example.haowei.twitter.model;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class Tweet {
-    String Username, Tweet;
+    private String Username, Tweet;
 
     public Tweet(String username, String tweet) {
         Username = username;
         Tweet = tweet;
     }
 
-    public Tweet() {
+    public Tweet(JSONObject jsonObject){
+        try {
+            this.Tweet = jsonObject.getString("text");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
     }
 
     public String getUsername() {

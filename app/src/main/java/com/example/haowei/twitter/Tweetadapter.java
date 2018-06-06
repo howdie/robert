@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.haowei.twitter.model.Tweet;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -37,14 +38,14 @@ public class Tweetadapter extends ArrayAdapter {
         }
 
         TextView tweet = convertView.findViewById(R.id.tweet);
-        TextView name = convertView.findViewById(R.id.name_id);
-        ImageView profile = convertView.findViewById(R.id.profilepic);
 
         Tweet tweet1 = tweets.get(position);
 
         tweet.setText(tweet1.getTweet());
-        name.setText(tweet1.getUsername());
 
+        String imageUri = "https://i.imgur.com/tGbaZCY.jpg";
+        ImageView profile = convertView.findViewById(R.id.profilepic);
+        Picasso.with(convertView.getContext()).load(imageUri).into(profile);
 
         return convertView;
     }
