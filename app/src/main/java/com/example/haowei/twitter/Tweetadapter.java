@@ -15,16 +15,14 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-public class Tweetadapter extends ArrayAdapter {
+public class Tweetadapter extends ArrayAdapter<Tweet> {
 
-    private List<Tweet> tweets;
     private LayoutInflater inflater;
 
 
     public Tweetadapter(@NonNull Context context, @NonNull List objects) {
         super(context, R.layout.tweet, objects);
 
-        tweets = objects;
         inflater = LayoutInflater.from(context);
     }
 
@@ -36,12 +34,15 @@ public class Tweetadapter extends ArrayAdapter {
         if(convertView == null){
             convertView = inflater.inflate(R.layout.tweet, parent, false);
         }
+        Tweet tweet = getItem(position);
 
-        TextView tweet = convertView.findViewById(R.id.tweet);
+        TextView tvName = convertView.findViewById(R.id.name);
+        String full_name = tweet.getUser().getScreen_name() + " @" + tweet.getUser().getName();
+        tvName.setText(full_name);
 
-        Tweet tweet1 = tweets.get(position);
+        TextView tvTweet = convertView.findViewById(R.id.tweet);
 
-        tweet.setText(tweet1.getTweet());
+        tvTweet.setText(tweet.getTweet());
 
         String imageUri = "https://i.imgur.com/tGbaZCY.jpg";
         ImageView profile = convertView.findViewById(R.id.profilepic);

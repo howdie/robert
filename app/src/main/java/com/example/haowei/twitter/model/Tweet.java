@@ -4,44 +4,40 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class Tweet {
-    private String Username, Tweet;
+    private String id_str,tweet, date;
+    private User user;
 
-    public Tweet(String username, String tweet) {
-        Username = username;
-        Tweet = tweet;
+    public Tweet(String tweet) {
+        this.tweet = tweet;
     }
 
     public Tweet(JSONObject jsonObject){
         try {
-            this.Tweet = jsonObject.getString("text");
+            this.tweet = jsonObject.getString("text");
+            this.date = jsonObject.getString("created_at");
+            this.id_str = jsonObject.getString("id_str");
+
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
     }
 
-    public String getUsername() {
-        return Username;
+    public void setUser(User user) {
+        this.user = user;
     }
 
-    public void setUsername(String username) {
-        Username = username;
+    public User getUser() {
+        return user;
     }
 
     public String getTweet() {
-        return Tweet;
+        return tweet;
     }
 
-    public void setTweet(String tweet) {
-        Tweet = tweet;
+    public String getDate() {
+        return date;
     }
 
-    @Override
-    public String toString() {
-        return "Tweet{" +
-                "Username='" + Username + '\'' +
-                ", Tweet='" + Tweet + '\'' +
-                '}';
-    }
 }
 
